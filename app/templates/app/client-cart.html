@@ -1,0 +1,42 @@
+{% extends "app/layout.html" %} {% block content %}
+<div class="cart-container">
+  <div class="cart-info">
+    <p class="cart-title">В вашей корзине продукты на сумму <strong>{{totalSum}} руб.</strong></p>
+    {% if profileFilled %}
+    <a class="place-an-order-link" href="{% url 'makeOrders' parametr=0 %}"><div class="place-an-order">Оформить заказ</div></a>
+    {% else %}
+    <p class="please-fill">Для оформления заказа заполните профиль</p>
+    <a class="profile-link" href="{% url 'profile' %}"><div class="place-an-order">Заполнить профиль</div></a>
+    {% endif %}
+    {% for product in products %}
+    <div class="cart-details">
+      <div class="left-and-center">
+        <div class="product-image">
+          <!-- <img src="/media/{{cart.productImage}}" alt="" /> -->
+          {% include "app/carousel.html" %}
+        </div>
+        <div class="left-part">
+          <p>Наименование</p>
+          <p>Код продукта</p>
+          <p>Стоимость</p>
+          <p>Количество</p>
+          <p>Общая стоимость</p>
+        </div>
+        <div class="center-part">
+          <p>{{product.productName}}</p>
+          <p>{{product.productCode}}</p>
+          <p>{{product.productPrice}}</p>
+          <p>{{product.productCount}}</p>
+          <p>{{product.sumForCount}}</p>
+        </div>
+      </div>
+      <div class="right-part">
+        <a href="{% url 'addToCart' parametr=product.productID %}" class="add-to-cart-link"><div class="remove-from-cart-button">+1</div></a>
+        <a class="remove-from-cart-link" href="{% url 'removeFromCart' parametr=product.cartID%}"><div class="remove-from-cart-button">-1</div></a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <!-- <a class="place-an-order-link" href="{% url 'makeOrders' parametr=0 %}"><div class="place-an-order">Оформить заказ</div></a> -->
+</div>
+{% endblock %}

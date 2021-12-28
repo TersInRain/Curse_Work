@@ -1,0 +1,15 @@
+{% extends "app/layout.html" %} {% load staticfiles %} {% block content %}
+<div class="home-container">
+  <div class="hcc">
+    <h1 class="title">Добро пожаловать в WebMarket</h1>
+    <h3 class="text">WebShop предлагает недорого купить готовый сайт. 
+      Выберите подходящее решение в каталоге из более множества вариантов. 
+      Большой выбор тематик, адаптивный дизайн. 
+      Удобная CMS, надежный хостинг и бесплатная консультация для клиентов.
+       Закажите готовый сайт сейчас и получите 4 месяца обслуживания в подарок.</h3>
+    <div class="img-container">
+      <img src="{% static 'app/content/welcome.png' %}" />
+    </div>
+  </div>
+</div>
+{% endblock %}
